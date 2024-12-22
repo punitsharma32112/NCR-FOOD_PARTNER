@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]); // Full list of restaurants
@@ -15,18 +16,12 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.67003492726483&lng=77.11469986756225&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await response.json();
 
       const restaurants =
-        json?.data?.cards
-          ?.find(
-            (card) =>
-              card?.card?.card?.gridElements?.infoWithStyle?.restaurants
-          )
-          ?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-
+        json?.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
       setAllRestaurants(restaurants); // Save full data
       setListofRestaurant(restaurants); // Display initial list
     } catch (error) {
@@ -86,7 +81,10 @@ const Body = () => {
         style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}
       >
         {ListofRestaurant.map((res) => (
-          <RestaurantCard key={res.info.id} resData={res} />
+         <Link key={res.info.id} to={`/city/delhi/${res.info.id}`}>
+         <RestaurantCard resData={res} />
+       </Link>
+       
         ))}
       </div>
     </div>
