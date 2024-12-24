@@ -1,6 +1,3 @@
 export const CDN_URL="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
-export const LOGO_URL="https://th.bing.com/th/id/OIP.9hl54qFeHA_2o_PIo3JhswAAAA?pid=ImgDet&w=185&h=176&c=7&dpr=1.3"
-
-
-//in one file we have single export default 
-//to export multiple things :use name export
+export const LOGO_URL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-Wqc0ChhkHxLLUpuj6fwEC5uqeZIhlF_zA&s"
+export const MENU_API="https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId="
