@@ -1,33 +1,15 @@
-import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
+import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constant";
-
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 // CDN URL for images
 export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
 const Restaurantmenu = () => {
-    const [resInfo, setResInfo] = useState(null);
     const { resId } = useParams(); // Correct destructuring
 
-    useEffect(() => {
-        fetchMenu();
-    }, []);
+   const resInfo=useRestaurantMenu(resId);
 
-    const fetchMenu = async () => {
-        try {
-            const apiUrl = `${MENU_API}${resId}`; // Construct API URL
-            console.log("Fetching menu from:", apiUrl);
-
-            const data = await fetch(apiUrl);
-            const json = await data.json();
-            console.log("API Response:", json);
-
-            setResInfo(json?.data); // Set restaurant info
-        } catch (error) {
-            console.error("Error fetching menu:", error.message);
-        }
-    };
+    
 
     if (!resInfo) {
         return <Shimmer />; // Show shimmer while data is loading
