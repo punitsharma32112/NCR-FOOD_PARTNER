@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constant";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = ({ resData }) => {
   const { info } = resData; // Destructure `info` from the passed data
-
+ const {loggedInUser}=useContext(UserContext)
   return (
     <div
       className="m-4 p-4 w-[250px] rounded-lg hover:bg-gray-200"
@@ -24,6 +26,7 @@ const RestaurantCard = ({ resData }) => {
           {info.aggregatedDiscountInfoV3.header}
         </h4>
       )}
+      <h4>User:{loggedInUser}</h4>
     </div>
   );
 };
